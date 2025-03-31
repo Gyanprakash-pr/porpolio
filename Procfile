@@ -1,1 +1,3 @@
-web: gunicorn your_project.wsgi --bind 0.0.0.0:$PORT --workers 3 --threads 2 --worker-class gthread --timeout 60 --preload --max-requests 1000
+web: gunicorn portfolio.wsgi --log-file - 
+#or works good with external database
+web: python manage.py migrate && gunicorn portfolio.wsgi
