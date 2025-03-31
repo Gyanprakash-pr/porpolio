@@ -4,6 +4,7 @@ from mainapp import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView
+from django.http import JsonResponse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -20,3 +21,7 @@ urlpatterns = [
 
     path('accounts/login/', LoginView.as_view(template_name='login.html'), name='login'),
 ] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+
+
+def health_check(request):
+    return JsonResponse({"status": "ok"})

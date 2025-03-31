@@ -1,1 +1,1 @@
-web: gunicorn your_project.wsgi --bind 0.0.0.0:$PORT --workers 2 --threads 4 --worker-class gthread --timeout 120
+web: gunicorn your_project.wsgi --bind 0.0.0.0:$PORT --workers 3 --threads 2 --worker-class gthread --timeout 60 --preload --max-requests 1000
