@@ -64,8 +64,15 @@ DATABASES = {
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.railway.app',
+]
 
-ALLOWED_HOSTS = ['*']  # अस्थायी तौर पर सभी होस्ट्स को अनुमति दें
+# Railway के द्वारा प्रदान किए गए HOSTNAME को जोड़ें
+if 'RAILWAY_STATIC_URL' in os.environ:
+    ALLOWED_HOSTS.append(os.environ['RAILWAY_STATIC_URL'].replace('https://', ''))
 DEBUG = False  # Production में False रखें
 
 AUTH_PASSWORD_VALIDATORS = [
