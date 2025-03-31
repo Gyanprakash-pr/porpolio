@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4 text-primary fw-bold">✨ My Projects ✨</h1>
+
+    <div class="row g-4">
+        {% for project in projects %}
+        <div class="col-md-4">
+            <div class="card project-card shadow-lg border-0">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">{{ project.title }}</h5>
+                    <p class="card-text text-muted">{{ project.description }}</p>
+                    <a href="{{ project.github_link }}" target="_blank" 
+                       class="btn btn-primary w-100 rounded-pill">🔗 View on GitHub</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No projects found. Start by creating one!</p>
+        {% endfor %}
+    </div>
+
+  
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    }
+
+    .project-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .project-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #2458a6;
+        transform: scale(1.05);
+    }
+</style>
+
+{% endblock %}

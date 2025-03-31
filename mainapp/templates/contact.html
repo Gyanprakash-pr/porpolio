@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center" style="color: #1565C0; font-weight: bold;">Get in Touch</h1>
+    <p class="text-center text-muted">I'd love to hear from you! Feel free to reach out.</p>
+
+    <div class="row justify-content-center align-items-center mt-4">
+        <!-- Left: Contact Form -->
+        <div class="col-lg-6">
+            <div class="card shadow-lg p-4 border-0"
+                style="background: linear-gradient(135deg, #E3F2FD, #BBDEFB); border-radius: 15px;">
+                <h4 class="text-center text-dark mb-3">Send a Message</h4>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label text-dark">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-dark">Your Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label text-dark">Your Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 fw-bold">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right: Contact Details -->
+        <div class="col-lg-5">
+            <div class="p-4 shadow-lg rounded text-center"
+                style="background: rgba(255, 255, 255, 0.7); border-radius: 15px;">
+                <h4 class="mb-3">Contact Information</h4>
+                <p><i class="fas fa-envelope"></i> Email: <strong>gyanbabu193@gmail.com</strong></p>
+                <p><i class="fab fa-linkedin"></i> LinkedIn:
+                    <a href="https://linkedin.com/in/gyanprakash" target="_blank" class="text-dark text-decoration-none">linkedin.com/in/gyanprakash</a>
+                </p>
+                <p><i class="fas fa-phone"></i> Phone: <strong>+91 6205102076</strong></p>
+            </div>
+        </div>
+    </div>
+
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}
+            alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #F5F7FA, #E3F2FD, #D6EAF8);
+        color: #333;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .form-control {
+        background: rgba(255, 255, 255, 0.8);
+        color: #333;
+        border: none;
+        border-radius: 8px;
+    }
+
+    .form-control::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        box-shadow: none;
+    }
+
+    .btn-primary {
+        background-color: #1565C0;
+        border-color: #1565C0;
+    }
+
+    .btn-primary:hover {
+        background-color: #0D47A1;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+    }
+</style>
+{% endblock %}

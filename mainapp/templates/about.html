@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <div class="row align-items-center">
+        <!-- Left Section: Profile Image -->
+        <div class="col-md-4 text-center">
+            <img src="{% static 'images/gyan.jpeg' %}" alt="Gyan Prakash" class="img-fluid rounded-circle shadow-lg" style="width: 250px; height: 250px; object-fit: cover;">
+        </div>
+
+        <!-- Right Section: Introduction -->
+        <div class="col-md-8">
+            <h1 class="text-primary fw-bold">About Me</h1>
+            <p class="lead text-muted">
+                I'm <strong>Gyan Prakash</strong>, an experienced software developer with over 2+ years in designing and developing software solutions. 
+                I specialize in WPF (C#), SQL Server, Core Python, and Tkinter and have built projects in Django, ASP.NET Core, OpenCV.
+            </p>
+            <p>
+                Currently, I work at Vulcan Advance Intelligence Computing Pvt Ltd, where I contribute to developing smart traffic management systems, automated solutions, and AI-driven applications.
+            </p>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="mt-5">
+        <h2 class="text-primary">Professional Experience</h2>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card shadow-lg border-0" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Software Development</h5>
+                        <p class="card-text">🔹 Developed <strong>VsuiteApplication</strong> (ATMS software) integrating <strong>VMS, ANPR, ECB, and CCTV</strong>.</p>
+                        <p class="card-text">🔹 Designed a <strong>CCTV Camera Application</strong> with real-time monitoring.</p>
+                        <p class="card-text">🔹 Built a <strong>Django-based e-commerce platform</strong> with secure payments & authentication.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow-lg border-0" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Machine Learning & AI</h5>
+                        <p class="card-text">🔹 Implemented <strong>OpenCV</strong> for real-time object detection in security systems.</p>
+                        <p class="card-text">🔹 Worked on <strong>classification models</strong> using <strong>Pandas, NumPy, Matplotlib, and ML algorithms</strong>.</p>
+                        <p class="card-text">🔹 Developed a <strong>spam detection system</strong> with data preprocessing and feature engineering.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Technologies Section -->
+    <div class="mt-5">
+        <h2 class="text-primary text-center">Technical Expertise</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-3 mt-3">
+            <span class="badge bg-primary fs-6 p-2">WPF (C#)</span>
+            <span class="badge bg-secondary fs-6 p-2">SQL Server</span>
+            <span class="badge bg-dark fs-6 p-2">Django</span>
+            <span class="badge bg-info fs-6 p-2">ASP.NET Core</span>
+            <span class="badge bg-success fs-6 p-2">OpenCV</span>
+            <span class="badge bg-danger fs-6 p-2">Machine Learning</span>
+            <span class="badge bg-warning fs-6 p-2">Pandas & NumPy</span>
+            <span class="badge bg-primary fs-6 p-2">Tkinter</span>
+            <span class="badge bg-secondary fs-6 p-2">Matplotlib</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

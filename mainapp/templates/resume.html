@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 p-4 text-center" style="max-width: 600px; margin: auto; background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px); border-radius: 15px;">
+        <h2 class="text-primary fw-bold mb-4">📄 My Resume</h2>
+
+        {% if resume_entry %}
+        <div class="d-flex flex-column align-items-center">
+            <i class="fas fa-file-alt fa-5x text-success mb-3"></i>
+            <p class="text-muted">Click below to download my latest resume:</p>
+            <a href="{{ resume_entry.resume_file.url }}" class="btn btn-lg btn-primary rounded-pill px-4 shadow-sm" download>
+                ⬇️ Download Resume
+            </a>
+        </div>
+        {% else %}
+        <div class="alert alert-warning text-center fw-bold">
+            ⚠️ No resume available. Please upload your resume first.
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+        color: #333;
+    }
+    .card {
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+    }
+    .btn-primary {
+        font-size: 1.2rem;
+        transition: all 0.3s;
+    }
+    .btn-primary:hover {
+        background-color: #2458a6;
+        transform: scale(1.05);
+    }
+</style>
+{% endblock %}
