@@ -4,6 +4,7 @@ import dj_database_url  # Import dj_database_url for parsing the database URL
 from django.core.wsgi import get_wsgi_application
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+CSRF_TRUSTED_ORIGINS= ["https://porpolio-production.up.railway.app/"]
 
 SECRET_KEY = 'django-insecure-(0y2rb%-5dtgdc3h^^-u$rq05yzi2n=!j*htp$59x=j9gq*8tp'
 
