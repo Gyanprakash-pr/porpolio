@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-
+import dj_database_url
+from dotenv import load_dotenv
+from django.core.wsgi import get_wsgi_application
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +29,8 @@ SECRET_KEY = 'django-insecure-(0y2rb%-5dtgdc3h^^-u$rq05yzi2n=!j*htp$59x=j9gq*8tp
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "portfolio.settings")  # Check settings path
+application = get_wsgi_application()
 # Application definition
 
 INSTALLED_APPS = [
@@ -81,17 +84,19 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+load_dotenv()
 
-import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=600,
+        engine="django.db.backends.postgresql"
+    )
 }
+
 
 ALLOWED_HOSTS = ['*']  # अस्थायी तौर पर सभी होस्ट्स को अनुमति दें
 DEBUG = False  # Production में False रखें
-# DATABASES = {
-#     'default': dj_database_url.config(conn_max_age=600)
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
