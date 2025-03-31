@@ -26,9 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(0y2rb%-5dtgdc3h^^-u$rq05yzi2n=!j*htp$59x=j9gq*8tp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -46,6 +43,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -84,6 +82,8 @@ DATABASES = {
     }
 }
 
+ALLOWED_HOSTS = ['*']  # अस्थायी तौर पर सभी होस्ट्स को अनुमति दें
+DEBUG = False  # Production में False रखें
 # DATABASES = {
 #     'default': dj_database_url.config(conn_max_age=600)
 # }
@@ -120,6 +120,7 @@ USE_TZ = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
