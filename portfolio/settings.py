@@ -5,7 +5,7 @@ from django.core.wsgi import get_wsgi_application
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 CSRF_TRUSTED_ORIGINS= ["https://porpolio-production.up.railway.app"]
-
+CORS_ALLOW_ALL_ORIGINS = True
 SECRET_KEY = 'django-insecure-(0y2rb%-5dtgdc3h^^-u$rq05yzi2n=!j*htp$59x=j9gq*8tp'
 
 INSTALLED_APPS = [
