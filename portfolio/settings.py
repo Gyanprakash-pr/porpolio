@@ -1,12 +1,16 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 import dj_database_url  # Import dj_database_url for parsing the database URL
 from django.core.wsgi import get_wsgi_application
+load_dotenv()
 
+# SECRET_KEY `.env` file se
+SECRET_KEY = os.getenv("SECRET_KEY")
 BASE_DIR = Path(__file__).resolve().parent.parent
 CSRF_TRUSTED_ORIGINS= ["https://porpolio-production.up.railway.app"]
 CORS_ALLOW_ALL_ORIGINS = True
-SECRET_KEY = 'django-insecure-(0y2rb%-5dtgdc3h^^-u$rq05yzi2n=!j*htp$59x=j9gq*8tp'
+# SECRET_KEY = 'django-insecure-(0y2rb%-5dtgdc3h^^-u$rq05yzi2n=!j*htp$59x=j9gq*8tp'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -46,32 +50,42 @@ TEMPLATES = [
         },
     },
 ]
+# Debug Mode (Production me False rakho)
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
+# Allowed Hosts
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
+# Database Configuration
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'RoFWwLKsoPNuQnCktxuszqoZEDhoClNR',
-        'HOST': 'turntable.proxy.rlwy.net',  # नया जेनरेट हुआ डोमेन
-        'PORT': '18706',  # नया पोर्ट
-        'OPTIONS': {
-            'sslmode': 'require',
-            'sslrootcert': 'prod-ca-2021.crt'  # SSL सर्टिफिकेट (अगर जरूरी हो)
-        }
-    }
+    "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'RoFWwLKsoPNuQnCktxuszqoZEDhoClNR',
+#         'HOST': 'turntable.proxy.rlwy.net',  # नया जेनरेट हुआ डोमेन
+#         'PORT': '18706',  # नया पोर्ट
+#         'OPTIONS': {
+#             'sslmode': 'require',
+#             'sslrootcert': 'prod-ca-2021.crt'  # SSL सर्टिफिकेट (अगर जरूरी हो)
+#         }
+#     }
+# }
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
-ALLOWED_HOSTS = ["porpolio-production.up.railway.app", "127.0.0.1"]
+# ALLOWED_HOSTS = ["porpolio-production.up.railway.app", "127.0.0.1"]
 
 
 # Railway के द्वारा प्रदान किए गए HOSTNAME को जोड़ें
-if 'RAILWAY_STATIC_URL' in os.environ:
-    ALLOWED_HOSTS.append(os.environ['RAILWAY_STATIC_URL'].replace('https://', ''))
-DEBUG = False  # Production में False रखें
+POSTGRES_LOCALLY = False
+# if 'RAILWAY_STATIC_URL' in os.environ:
+#     ALLOWED_HOSTS.append(os.environ['RAILWAY_STATIC_URL'].replace('https://', ''))
+# DEBUG = False  # Production में False रखें
 
 AUTH_PASSWORD_VALIDATORS = [
     {
