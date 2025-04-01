@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'mainapp',  # ✅ आपका ऐप भी होना चाहिए
 ]
 
@@ -24,6 +25,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -65,11 +67,8 @@ DATABASES = {
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '.railway.app',
-]
+ALLOWED_HOSTS = ["porpolio-production.up.railway.app", "127.0.0.1"]
+
 
 # Railway के द्वारा प्रदान किए गए HOSTNAME को जोड़ें
 if 'RAILWAY_STATIC_URL' in os.environ:
