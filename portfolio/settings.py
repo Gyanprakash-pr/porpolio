@@ -50,42 +50,33 @@ TEMPLATES = [
         },
     },
 ]
-# Debug Mode (Production me False rakho)
-DEBUG = os.getenv("DEBUG", "False") == "True"
 
-# Allowed Hosts
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
-# Database Configuration
 DATABASES = {
-    "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'RoFWwLKsoPNuQnCktxuszqoZEDhoClNR',
+        'HOST': 'turntable.proxy.rlwy.net',  # नया जेनरेट हुआ डोमेन
+        'PORT': '18706',  # नया पोर्ट
+        'OPTIONS': {
+            'sslmode': 'require',
+            'sslrootcert': 'prod-ca-2021.crt'  # SSL सर्टिफिकेट (अगर जरूरी हो)
+        }
+    }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': 'RoFWwLKsoPNuQnCktxuszqoZEDhoClNR',
-#         'HOST': 'turntable.proxy.rlwy.net',  # नया जेनरेट हुआ डोमेन
-#         'PORT': '18706',  # नया पोर्ट
-#         'OPTIONS': {
-#             'sslmode': 'require',
-#             'sslrootcert': 'prod-ca-2021.crt'  # SSL सर्टिफिकेट (अगर जरूरी हो)
-#         }
-#     }
-# }
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
 # ALLOWED_HOSTS = ["porpolio-production.up.railway.app", "127.0.0.1"]
-
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
 # Railway के द्वारा प्रदान किए गए HOSTNAME को जोड़ें
 POSTGRES_LOCALLY = False
-# if 'RAILWAY_STATIC_URL' in os.environ:
-#     ALLOWED_HOSTS.append(os.environ['RAILWAY_STATIC_URL'].replace('https://', ''))
-# DEBUG = False  # Production में False रखें
+if 'RAILWAY_STATIC_URL' in os.environ:
+    ALLOWED_HOSTS.append(os.environ['RAILWAY_STATIC_URL'].replace('https://', ''))
+DEBUG = False  # Production में False रखें
 
 AUTH_PASSWORD_VALIDATORS = [
     {
